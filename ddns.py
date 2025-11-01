@@ -11,12 +11,12 @@ from alibabacloud_tea_util.client import Client as UtilClient
 
 
 def get_current_ip():
-    x = requests.get("http://ifconfig.me")
-    return x.content.decode("utf-8")
+    s = requests.get("http://ipinfo.io/ip")
+    return s.content.decode('utf-8')
 
 config = open_api_models.Config(
-    access_key_id="xx",
-    access_key_secret="xx"
+    access_key_id = os.getenv("ALICLOUD_ACCESS_KEY_ID")
+    access_key_secret = os.getenv("ALICLOUD_ACCESS_KEY_SECRET")
 )
 config.endpoint = f'alidns.cn-hangzhou.aliyuncs.com'
 client = Alidns20150109Client(config)
